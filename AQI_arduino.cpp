@@ -1,12 +1,12 @@
-#include <SPI.h>
-#include <Wire.h>
+#include <SPI.h>            //Library for SPI communication
+#include <Wire.h>           //Library for I2C communication
 
-#define sensor    A0 
+#define sensor    A0        //Define the analog pin for the gas sensor
 
-int gasLevel  = 0;       
-String quality =""; 
+int gasLevel  = 0;          //Variable to store gas sensor value
+String quality ="";         //Variable to store air quality description                                             
 
-void air_sensor()
+void air_sensor()           //Function to read gas sensor value and determine air quality
 {
   gasLevel = analogRead(sensor);
 
@@ -26,11 +26,11 @@ void air_sensor()
     quality = " Toxic";   
 }
   
-  Serial.println(gasLevel);
-~  Serial.println(quality); 
+  Serial.println(gasLevel);         //Print the gas sensor value to the Serial Monitor
+  Serial.println(quality);          //Print the air quality description to the Serial Monitor, open serial montior using tools or Ctrl+Shift+M on Arduino IDE
 }
 
-void setup() {
+void setup() {                      //Initialize serial communication and set the sensor pin as input
   Serial.begin(9600);
   pinMode(sensor,INPUT);  
 }
